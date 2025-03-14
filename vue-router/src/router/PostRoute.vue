@@ -4,13 +4,14 @@
 </template>
   
 <script>
-    import { testPosts } from '@/testPosts';
+    import { usePosts } from '@/usePosts.js';
     import { useRoute } from 'vue-router';
     import { computed } from 'vue';
     
     export default{setup() {
         const route = useRoute()
-        const post = computed(() => testPosts.find(x => x.id === parseInt(route.params.id, 10)))
+        const postStore = usePosts()
+        const post = computed(() => postStore.posts.value.find(x => x.id === parseInt(route.params.id, 10)))
         return {post}
     }}
 </script>
